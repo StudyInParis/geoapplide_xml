@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<project name="DTDDocAnt" default="main">
+
+    <description>
+    This file shows how to call DTDDoc from within Ant.
+    </description>
+
+    <!-- Tell ant where to find the code of the DTDDoc task.
+            You may have to change this if the two jars are not in your
+            path. -->
+
+    <taskdef name="DTDDoc"
+             classname="DTDDoc.DTDDocTask"
+             classpath="/home/mathilde/Dropbox/cours/XML/outilsDTD/DTDDoc/DTDDoc.jar"/>
+
+    <!-- Execute DTDDoc -->
+
+    <target name="main">
+        <DTDDoc showHiddenTags="true"
+                showFixmeTags="false"
+                sourceDir="./dtds"
+                destDir="./example"
+                docTitle = "DTDDoc test title">
+            <include name="*.dtd"/>
+        </DTDDoc>
+    </target>
+
+</project>
