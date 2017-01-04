@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Données</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body class="left-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header-wrapper">
+					<header id="header" class="container">
+
+						<!-- Logo -->
+							<div id="logo">
+								<h1><a href="index.html">geoapplide</a></h1>
+								<span>projet</span>
+							</div>
+
+							<!-- Nav -->
+								<nav id="nav">
+									<ul>
+										<li><a href="index.html">Bienvenue !</a></li>
+										<li class="current"><a href="page1_donnees.html">Données</a></li>
+										<!-- <li>
+											<a href="page1_donnees.html">Données</a>
+											<ul>
+												<li><a href="#">Lorem ipsum dolor</a></li>
+												<li><a href="#">Magna phasellus</a></li>
+												<li><a href="#">Phasellus consequat</a></li>
+												<li><a href="#">Veroeros feugiat</a></li>
+											</ul>
+										</li> -->
+										<li><a href="page2_graphes.html">Graphes</a></li>
+										<li><a href="page4_carte.html">Carte</a></li>
+										<li><a href="page4_tableau.html">Tableau</a></li>
+									</ul>
+								</nav>
+
+					</header>
+				</div>
+
+			<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div class="row 200%">
+							<div class="4u 12u$(medium)">
+								<div id="sidebar">
+
+									<!-- Sidebar -->
+										<!-- <section>
+											<h3>Subheading</h3>
+											<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus.
+											Praesent semper mod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat.
+											Aliquam luctus et mattis lectus sit amet pulvinar. Nam turpis nisi
+											consequat etiam.</p>
+											<footer>
+												<a href="#" class="button icon fa-info-circle">Find out more</a>
+											</footer>
+										</section> -->
+
+										<section>
+											<h3>Sources</h3>
+											<ul class="style2">
+												<li><a href="#datagouv">DataGouv</a></li>
+												<li><a href="#parisdata">Paris Opendata</a></li>
+												<li><a href="#csv2xml">Passage du CSV au XML</a></li>
+												<li><a href="#xmlpivot">Fichier XML pivot</a></li>
+												<li><a href="#stats">Statistiques python</a></li>
+												<li><a href="#javascript">Javascript</a></li>
+											</ul>
+										</section>
+
+								</div>
+							</div>
+							<div class="8u 12u$(medium) important(medium)">
+								<div id="content">
+
+									<!-- Content -->
+										<article>
+
+											<h2 id="titre">Les données</h2>
+
+											<h3 id="datagouv">DataGouv</h3>
+												<p>Une partie de nos données viennent du site <a href="http://www.data.gouv.fr/fr/">data.gouv</a> qui est un site gourvernemenal qui propose les données mises en ligne par le gouvernement. Nous y avons par exmpele récupéré les données sur les loyers ou les bibliothèques.</p>
+												<p>Beaucoup de données y sont présentes au format CSV ou JSON, peu de choses sont récupérables en XML, nous avons du les transformé, c'est expliqué <a href="#data2xml">un peu plus loin</a>.</p>
+												<img src="images/datagouv.png" alt="logo paris opendata" height="100px"/>
+											<h3 id="parisdata">Paris OpenData</h3>
+												<p>La plus grosse partie de nos sources vient du site <a href="https://opendata.paris.fr">opendata</a> de la ville de Paris. De même, la plupart des données y sont présentes au format CSV, donc ils ont été transformés aussi.</p>
+												<img src="images/parisdata.png" alt="logo paris opendata" width="300px"/>
+											<h3 id="data2xml">Transformation en fichiers XML</h3>
+											<h4>CSV</h4>
+												<p>Le fichier OpenBeerMap est construit de la façon suivante :
+
+												<ul><li>OpenBeerMap_IDF.1126088147,1126088147,(1:Akerbeltz_ambrée),Non,L'Express,pub</li></ul>
+
+												Voilà un exemple pour les brasseries qui proposent plusieurs types de bières :
+
+												<ul><li>OpenBeerMap_IDF.1305927682,1305927682,"(9:Chouffe,Desperados,Guinness,Heineken,Hoegarden blanche,Leffe,...)",Non,Osmoz Café,pub</li></ul>
+
+												Donc on ne peut pas spliter sur la virgule directement. On extraie donc ce qui est entre parenthèses, on le supprime de la ligne en le sauvegardant en mémoire pour pouvoir spliter la ligne sur la virgule et récupérer un tableau contenant toutes les informations pour les imprimer dans le fichier de sortie.</p>
+
+												<p>On obtient le fichier <a href="../donnees_xml/OpenBeerMap.xml">openbeermap.xml</a>.</p>
+												<textarea id="openbeermap" style="width:650px;height:200;"></textarea>
+											<h4>JSON</h4>
+												<p>Les fichiers json ont été très simples à passer en XML, python propose le module json qui traite un fichier json et créé un dictionnaire contenant toutes les données du fichier.
+
+												Ensuite un module dicttoxml permet dans l'autre sens, c'est à dire à partir d'un dictionnaire, de créer un fichier xml. C'est avec ce script que nous avons généré les fichiers suivants :
+												- facs.xml
+												- cinemas.xml
+												- preservatifs.xml
+												- quartiers.xml
+												- cafes.xml
+												- marches.xml
+
+												Après tentative de validation, les dtd montraient un problème dans la structure du xml: le module transformant en balise <item>
+												chaque liste du json d'origine. il y avait plusieurs balises <item>, dans différents noeuds...
+												  -> Résolution : il a fallu ne sélectionner que la clé qui nous intéressait dans le json pour supprimer l'erreur.</p>
+											<h3 id="xmlpivot">Réalisation d'un fichier pivot en XML</h3>
+												<p></p>
+												<p></p>
+											<h3 id="stats">Calculs de statistiques sur les données</h3>
+												<p></p>
+												<p></p>
+											<h3 id="javascript">Utilisation de javascript pour la réalisation du site</h3>
+												<p></p>
+												<p></p>
+										</article>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Footer -->
+					<div id="footer-wrapper">
+						<footer id="footer" class="container">
+							<div class="row">
+								<div class="3u 6u(medium) 12u$(small)">
+
+									<!-- Links -->
+										<section class="widget links">
+											<h3>Chloé Monnin</h3>
+											<ul class="style2">
+												<li><a href="#">contact mail</a></li>
+											</ul>
+										</section>
+
+								</div>
+								<div class="3u 6u$(medium) 12u$(small)">
+
+									<!-- Links -->
+										<section class="widget links">
+											<h3>Mathilde Poulain</h3>
+											<ul class="style2">
+												<li><a href="#">contact mail</a></li>
+											</ul>
+										</section>
+
+								</div>
+								<div class="3u 6u(medium) 12u$(small)">
+
+									<!-- Links -->
+										<section class="widget links">
+											<h3>Léon-Paul Schaub</h3>
+											<ul class="style2">
+												<li><a href="#">contact mail</a></li>
+											</ul>
+										</section>
+
+								</div>
+								<div class="3u 6u$(medium) 12u$(small)">
+
+									<!-- Contact -->
+										<section class="widget contact last">
+											<h3>Notre projet sur Github</h3>
+											<ul>
+												<li><a ref="https://github.com/StudyInParis/geoapplide"><img src="images/GitHub-Mark-Light-32px.png" alt="lien geoapplide github"/></a></li>
+											</ul>
+										</section>
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="12u">
+									<div id="copyright">
+										<ul class="menu">
+											<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</footer>
+					</div>
+
+				</div>
+
+<!-- Scripts -->
+<script>
+$.ajax({
+  url: "https://raw.githubusercontent.com/StudyInParis/geoapplide/master/donnees_xml/OpenBeerMap.xml",
+  cache: true
+})
+  .done(function( html ) {
+    $("#openbeermap").val( html ) ;
+  });
+</script>
+
+	</body>
+</html>
