@@ -27,6 +27,7 @@ def open_and_dic(fichier,dic):
 def out_xml(dico):
 	fic = open("../XML/xml_pivot/xml_pivot.xml",'w')
 	fic.write("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n<root>\n")
+	fic.write('<?xml-stylesheet href="transformation.xsl" type="text/xsl"?>')
 	compteur = 0
 	dic2 = create_dic("../data/CSV/encadrement_loyers_paris.csv")
 	for cle in sorted(dico):
@@ -49,6 +50,6 @@ if __name__=='__main__':
 	dic.update(open_and_dic("../XML/fichiers_2xml_pivot/liste-des-cafes-a-un-euro_pivot.xml",dic))
 	dic.update(open_and_dic("../XML/fichiers_2xml_pivot/openbeermap_pivot.xml",dic))
 	dic.update(open_and_dic("../XML/fichiers_2xml_pivot/crous_restauration_france_entiere_pivot.xml",dic))
-	
+
 	#pprint(dic)
 	out_xml(dic)
