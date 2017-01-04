@@ -25,11 +25,11 @@
       							<!-- Nav -->
       								<nav id="nav">
       									<ul>
-      										<li><a href="index.html">Bienvenue !</a></li>
-      										<li><a href="page1_donnees.html">Données</a></li>
-      										<li><a href="page2_graphes.html">Graphes</a></li>
-      										<li><a href="page3_avec_carte_tests.html">Carte</a></li>
-      										<li><a href="page4_tableau.html">Tableau</a></li>
+      										<li><a href="../../web/HTML/index.html">Bienvenue !</a></li>
+      										<li><a href="../../web/HTML/page1_donnees.html">Données</a></li>
+      										<li><a href="../../web/HTML/page2_graphes.html">Graphes</a></li>
+      										<li><a href="../../web/HTML/page3_carte.html">Carte</a></li>
+      										<li><a href="../../web/HTML/page4_tableau.html">Tableau</a></li>
       									</ul>
       								</nav>
 
