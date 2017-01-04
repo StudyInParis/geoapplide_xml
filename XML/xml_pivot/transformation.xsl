@@ -27,15 +27,6 @@
       									<ul>
       										<li><a href="index.html">Bienvenue !</a></li>
       										<li><a href="page1_donnees.html">Données</a></li>
-      										<!-- <li>
-      											<a href="page1_donnees.html">Données</a>
-      											<ul>
-      												<li><a href="#">Lorem ipsum dolor</a></li>
-      												<li><a href="#">Magna phasellus</a></li>
-      												<li><a href="#">Phasellus consequat</a></li>
-      												<li><a href="#">Veroeros feugiat</a></li>
-      											</ul>
-      										</li> -->
       										<li><a href="page2_graphes.html">Graphes</a></li>
       										<li><a href="page3_avec_carte_tests.html">Carte</a></li>
       										<li><a href="page4_tableau.html">Tableau</a></li>
