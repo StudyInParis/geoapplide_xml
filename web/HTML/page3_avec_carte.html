@@ -86,9 +86,9 @@
                       useGeoJSON: true,
                       //strokeColor: color,
                       strokeOpacity: 0.8,
-                      strokeWeight: 2,
+                      strokeWeight: 0.5,
                       fillColor: color,
-                      fillOpacity : 0.5
+                      fillOpacity : 0.6
                     });
                     }
                   })
@@ -210,8 +210,38 @@
     											<h2 id="titre">Carte de visualisation des lieux</h2>
                           <p>Cette carte représente tous les lieux donnés dans les fichiers récupérés, chaque couleur correspond à un type de lieux, en sélectionnant un lieu, vous verrez l'adresse et le type de lieu (marché, cinéma, distributeurs de préservatifs, café, bar ou bibliothèque).</p>
 
-                          <div id="map"></div>
+                          <div id="map" align="center"></div>
 
+                          <p><h2> Légende </h2></p>
+                          <table>
+                          <tr><td>
+                          <p><h3 align="center">Lieux</h3>
+                            <ul>
+                            <li align="center"><img src="http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_purple.png"></img>  Distributeurs de préservatifs</li>
+                            <li align="center"><img src="http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png"></img>  Bibliothèques</li>
+                            <li align="center"><img src="http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_white.png"></img>  Cinémas</li>
+                            <li align="center"><img src="http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_orange.png"></img>  Bars</li>
+                            <li align="center"><img src="http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_yellow.png"></img>  Cafés à 1€</li>
+                            <li align="center"><img src="http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png"></img>  Marchés</li>
+                            <li align="center"><img src="http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_brown.png"></img>  CROUS</li>
+                          </p>
+                          </td>
+                          <td>
+                          <p><h3> Loyers </h3>
+                            <ul>
+                              <li style="background-color:#670001;" align="center">28€/m²</li>
+                          <li style="background-color:#800001;" align="center">27€/m²</li>
+                            <li style="background-color:#9a0001; "align="center">26€/m²</li>
+                            <li style="background-color:#b30001;" align="center">25€/m²</li>
+                          <li style="background-color:#cd0001;" align="center">24€/m²</li>
+                          <li style="background-color:#e60001;" align="center">23€/m²</li>
+                          <li style="background-color:#ff0002;" align="center">22€/m²</li>
+                          <li style="background-color:#ff1a1b;" align="center">21€/m²</li>
+                            </ul>
+                          </p>
+                          </td>
+                          </tr>
+                        </table>
     										</article>
 
     								</div>

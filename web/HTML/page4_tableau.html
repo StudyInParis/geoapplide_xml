@@ -79,55 +79,71 @@
                               <td><strong>Fichier</strong></td>
                               <td><strong>Source</strong></td>
                               <td><strong>Format(s)</strong></td>
-                              <td width="50%"><strong>Informations</strong></td>
+                              <td width="40%"><strong>Informations</strong></td>
+                              <td>Ressources</td>
                             </tr>
                             <tr style="background-color:#FFFAFA;">
                               <td>Distributeurs de préservatifs</td>
                               <td><a href="https://opendata.paris.fr/explore/dataset/distributeurspreservatifsmasculinsparis2012/api/">opendata.paris.fr</a></td>
                               <td>json et geojson</td>
-                              <td width="50%">id, année d'installation, horaires pendant les vacances d'été, adresse, site, horaires pendant les vacances d'hiver, accès (intérieur/extérieur), latitude/longitude, adresse complète, arrondissement, horaires normales</td>
+                              <td width="40%">id, année d'installation, horaires pendant les vacances d'été, adresse, site, horaires pendant les vacances d'hiver, accès (intérieur/extérieur), latitude/longitude, adresse complète, arrondissement, horaires normales</td>
+                              <td><a href="../../scripts/json2xml2.py">script</a></br><a href="../../grammaire/validation_xml/distributeurspreservatifsmasculinsparis2012.dtd">validation</a></br><a href="../../XML/fichiers_2xml/preservatifs.xml">xml final</a></td>
                             </tr>
                             <tr style="background-color:#EEEEC6;">
                               <td>cafés à 1€</td>
                               <td><a href="https://opendata.paris.fr/explore/dataset/liste-des-cafes-a-un-euro/api/">opendata.paris.fr</a></td>
                               <td>json et geojson</td>
-                              <td width="50%">id, arrondissement, adresse, prix, géolocalisation, nom du café, prix en terrasse, date, prix au comptoir</td>
+                              <td width="40%">id, arrondissement, adresse, prix, géolocalisation, nom du café, prix en terrasse, date, prix au comptoir</td>
+                              <td><a href="../../scripts/json2xml2.py">script</a></br><a href="../../grammaire/validation_xml/liste-des-cafes-a-un-euro.dtd">validation</a></br><a href="../../XML/fichiers_2xml/liste-des-cafes-a-un-euro.xml">xml final</a></td>
                             </tr>
                             <tr style="background-color:#FFFAFA;">
                               <td>cinémas</td>
                               <td><a href="https://opendata.paris.fr/explore/dataset/cinemas-a-paris/api/">opendata.paris.fr</a></td>
                               <td>json et geojson</td>
-                              <td width="50%">id, nombre d'écrans, nombre de fauteuils, ndegauto, arrondissement, art et essai (NON/A), adresse, nom de l'établissement, coordonnées (lat, long)</td>
+                              <td width="40%">id, nombre d'écrans, nombre de fauteuils, ndegauto, arrondissement, art et essai (NON/A), adresse, nom de l'établissement, coordonnées (lat, long)</td>
+                              <td><a href="../../scripts/json2xml2.py">script</a></br><a href="../../grammaire/validation_xml/cinemas2.dtd">validation</a></br><a href="../../XML/fichiers_2xml/cinemas.xml">xml final</a></td>
                             </tr>
                             <tr style="background-color:#EEEEC6;">
                               <td>marchés de quartiers</td>
                               <td><a href="https://opendata.paris.fr/explore/dataset/liste_des_marches_de_quartier_a_paris/api/">opendata.paris.fr</a></td>
                               <td>json et geojson</td>
-                              <td width="50%">id, marché, jour (horaires), arrondissement, adresse complète, localisation (détail adresse), société gestionnaire</td>
+                              <td width="40%">id, marché, jour (horaires), arrondissement, adresse complète, localisation (détail adresse), société gestionnaire</td>
+                              <td><a href="../../scripts/json2xml2.py">script</a></br><a href="../../grammaire/validation_xml/liste-marches2.dtd">validation</a></br><a href="../../XML/fichiers_2xml/liste_marches.xml">xml final</a></td>
                             </tr>
                             <tr style="background-color:#FFFAFA;">
                               <td>bières, openbeermap</td>
                               <td><a href="https://www.data.gouv.fr/fr/datasets/bars-pubs-et-brasseries-artisanales-dopen-beer-map-ile-de-france-mai-2015/">data.gouv.fr</a></td>
                               <td>csv, séparateur = ","</td>
-                              <td width="50%">nom de l'établissement, gml id, osm id, brewer (Oui/Non), bières (noms de bières), type (bar/pub)</td>
+                              <td width="40%">nom de l'établissement, gml id, osm id, brewer (Oui/Non), bières (noms de bières), type (bar/pub)</td>
+                              <td><a href="../../scripts/openbeermap2xml.py">script</a></br><a href="../../grammaire/validation_xml/OpenBeerMap.dtd">validation</a></br><a href="../../XML/fichiers_2xml/OpenBeerMap.xml">xml final</a></td>
                             </tr>
                             <tr style="background-color:#EEEEC6;">
                               <td>bibliothèques (équipements de proximité)</td>
                               <td><a href="https://opendata.paris.fr/explore/dataset/equipements_de_proximite/">opendata.paris.fr</a></td>
                               <td>csv, séparateur = ";"</td>
-                              <td width="50%">Mairie gestionnaire (arrondissement), Type d'équipement (Jardin, Crèche, <b>Bibliothèque</b>), Désignation_longue (nom), AP_num (numéro), AP_cnu (infos complémentaires), AP_cp (code postal), Ap_voie (nom de la voie)</td>
+                              <td width="40%">Mairie gestionnaire (arrondissement), Type d'équipement (Jardin, Crèche, <u>Bibliothèque</u>), Désignation_longue (nom), AP_num (numéro), AP_cnu (infos complémentaires), AP_cp (code postal), Ap_voie (nom de la voie)</td>
+                              <td><a href="../../scripts/bibliotheque2xml.py">script</a></br><a href="../../grammaire/validation_xml/Bibliotheque.dtd">validation</a></br><a href="../../XML/fichiers_2xml/Bibliotheque_modele2.xml">xml final</a></td>
                             </tr>
                             <tr style="background-color:#FFFAFA;">
                               <td>CROUS (France entière)</td>
                               <td><a href="https://www.data.gouv.fr/fr/datasets/ensemble-des-lieux-de-restauration-des-crous-france-entiere-1/">data.gouv.fr</a></td>
-                              <td></td>
-                              <td width="50%">id, lat, long, nom, type (resto/cafeteria), contact (adresse complète)</td>
+                              <td>XML</td>
+                              <td width="40%">id, lat, long, nom, type (resto/cafeteria), contact (adresse complète)</td>
+                              <td><a href="../../scripts/crous2xml.py">script</a></br><a href="../../grammaire/validation_xml/crous_propre.dtd">validation</a></br><a href="../../XML/fichiers_2xml/restauration_france_entiere.xml">xml final</a></td>
                             </tr>
                             <tr style="background-color:#EEEEC6;">
                               <td>LOYERS DE PARIS</td>
                               <td><a href="https://www.data.gouv.fr/fr/datasets/encadrement-des-loyers-a-paris/">data.gouv.fr</a></td>
-                              <td></td>
-                              <td width="50%">zoneGL,quartier, n-pieces, prix moyen au m², prix mini, prix max</td>
+                              <td>csv, séparateur = ""</td>
+                              <td width="40%">zoneGL,quartier, n-pieces, prix moyen au m², prix mini, prix max</td>
+                              <td><a href="../../scripts/loyers.py">script</a></br><a href="../../grammaire/validation_xml/xml_pivot.dtd">validation</a></br><a href="../../XML/fichiers_2xml/xml_pivot.xml">xml final</a></td>
+                            </tr>
+                            <tr style="background-color:#FFFAFA;">
+                              <td><b>XML Pivot</b></td>
+                              <td><a href="../../XML/fichiers_2xml/xml_pivot.xml">xml final</a></td>
+                              <td>XML</td>
+                              <td width="40%">pour chaque arrondissement le prix moyen du m² à la location, pour chaque élément le type de lieu, le nom, l'adresse et les coordonnées géographiques (longitude et latitude).</td>
+                              <td><a href="../../scripts/loyers.py">script</a></br><a href="../../grammaire/validation_xml/xml_pivot.dtd">validation</a></td>
                             </tr>
                           </table>
 

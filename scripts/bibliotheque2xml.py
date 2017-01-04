@@ -3,11 +3,19 @@
 
 """ 
 Prend en entrée le fichier csv bibliotheque et le transforme en xml
-INSTALLER csv2xml
 """
 
 import csv, os
-from csv2xml import prepare
+
+def prepare(string):
+	metachars=["<","&",">"]
+	for char in metachars:
+		if char in string:
+			string=escape(string)
+			print(char)
+			print(string)
+	return string
+
 
 def get_data(infilename, pattern):
 	liste = []

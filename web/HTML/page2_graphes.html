@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Graphes</title>
-  <script src="./assets/js/jquery.min.js"></script>
-  <script src="./assets/js/visualize.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/visualize.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!--[if lte IE 8]><script src="../js/ie/html5shiv.js"></script><![endif]-->
   <link rel="stylesheet" href="../css/main.css" />
@@ -47,7 +47,7 @@
     									</li> -->
     									<li><a href="page1_donnees.html">Données</a></li>
     									<li class="current"><a href="page2_graphes.html">Graphes</a></li>
-    									<li><a href="page3_avec_carte.html">Carte</a></li>
+    									<li><a href="page3_carte.html">Carte</a></li>
     									<li><a href="page4_tableau.html">Tableau</a></li>
     								</ul>
     							</nav>
@@ -117,6 +117,108 @@
 
   <textarea id="source" style="width:100%; height:450px" ></textarea>
 
+
+
+
+<script>
+$("#titre").append(" des lieux par arrondissement :");
+$("#source").hide();
+$.ajax({
+  url: "https://raw.githubusercontent.com/StudyInParis/geoapplide/master/xml_formattes_pivot/xml_pivot.xml",
+  cache: true
+})
+  .done(function( html ) {
+    $("#source").val( html ) ;
+  });
+    var xml=$("#source").val(),
+    xmlDoc = $.parseXML( xml ),
+    $xml = $( xmlDoc );
+
+// crée un tableau avec tous les types
+var types = new Object() ;
+$(xml).find('arrondissement').each(function(){
+	var arro = $(this).attr("num") ;
+	$(this).find('element').each( function(){
+		var type = $(this).attr("type") ;
+    types[type] = type;
+	});
+});
+
+// créé un tableau avec tous les arrondissements
+var arrs = new Array();
+var i =0;
+$(xml).find('arrondissement').each(function(){
+  var arro = $(this).attr("num") ;
+  arrs[i] = arro;
+  i++;;
+  });
+
+// création d'un tableau avec nombre d'éléments par arrondissement
+var tab_cafes = new Array();
+var tab_marches = new Array();
+var tab_cines = new Array();
+var tab_crouss = new Array();
+var tab_preservatifs = new Array();
+var tab_biblis = new Array();
+var tab_bars = new Array();
+var i = 1;
+
+$(xml).find('arrondissement').each(function(){
+	var arro = $(this).attr("num") ;
+  tab_cafes[i] = 0;
+  tab_marches[i] = 0;
+  tab_bars[i] = 0;
+  tab_preservatifs[i] = 0;
+  tab_cines[i] = 0;
+  tab_biblis[i] = 0;
+  tab_crouss[i] = 0;
+  $("#liste").append('<h3 id="'+arro+'">'+arro+'</h3>')
+  $("#liste").append('<ul id="'+i+'" class="bar"></ul>')
+	$(this).find('element').each( function(){
+		var id = $(this).attr('id') ;
+		var nom = $(this).find('nom').text() ;
+		var adr = $(this).find("adresse").text() ;
+		var type = $(this).attr("type") ;
+    if(type == "cafe") {
+      tab_cafes[i]++;
+    };
+    if(type == "marche") {
+      tab_marches[i]++;
+    };
+    if(type == "cinema") {
+      tab_cines[i]++;
+    };
+    if(type == "bibli") {
+      tab_biblis[i]++;
+    };
+    if(type == "preservatifs") {
+      tab_preservatifs[i]++;
+    };
+    if(type == "bar") {
+      tab_bars[i]++;
+    };
+    if(type == "crous") {
+      tab_crouss[i]++;
+    };
+	});
+  $("#"+i).append('<li class="visualize" data-value="'+tab_cafes[i]+'" data-color="#FFAAAA">cafes : '+tab_cafes[i]+'</li>')
+  $("#"+i).append('<li class="visualize" data-value="'+tab_marches[i]+'" data-color="#D46A6A">marches : '+tab_marches[i]+'</li>')
+  $("#"+i).append('<li class="visualize" data-value="'+tab_cines[i]+'" data-color="#AA3939">cinémas : '+tab_cines[i]+'</li>')
+  $("#"+i).append('<li class="visualize" data-value="'+tab_crouss[i]+'" data-color="#801515">crous : '+tab_crouss[i]+'</li>')
+  $("#"+i).append('<li class="visualize" data-value="'+tab_preservatifs[i]+'" data-color="#550000">preservatifs : '+tab_preservatifs[i]+'</li>')
+  $("#"+i).append('<li class="visualize" data-value="'+tab_bars[i]+'" data-color="#AA6C39">bars : '+tab_bars[i]+'</li>')
+  $("#"+i).append('<li class="visualize" data-value="'+tab_biblis[i]+'" data-color="#882D61">bibliothèques : '+tab_biblis[i]+'</li>')
+  i++;
+});
+
+$('.bar').visualize({
+     width: 300,
+     height: 300,
+     type: 'bar',
+     legend: true
+ });
+</script>
+
       <!-- Footer -->
         <div id="footer-wrapper">
           <footer id="footer" class="container">
@@ -180,110 +282,6 @@
 
       </div>
 
-
-
-<script>
-$("#titre").append(" des lieux par arrondissement :");
-$("#source").hide();
-$.ajax({
-  url: "https://raw.githubusercontent.com/StudyInParis/geoapplide/master/xml_formattes_pivot/xml_pivot.xml",
-  cache: true
-})
-  .done(function( html ) {
-    $("#source").val( html ) ;
-  });
-    var xml=$("#source").val(),
-    xmlDoc = $.parseXML( xml ),
-    $xml = $( xmlDoc );
-// crée un tableau avec tous les types
-var types = new Object() ;
-$(xml).find('arrondissement').each(function(){
-	var arro = $(this).attr("num") ;
-	$(this).find('element').each( function(){
-		var type = $(this).attr("type") ;
-    types[type] = type;
-	});
-});
-console.log(types);
-// créé un tableau avec tous les arrondissements
-var arrs = new Array();
-var i =0;
-$(xml).find('arrondissement').each(function(){
-  var arro = $(this).attr("num") ;
-  arrs[i] = arro;
-  i++;;
-  });
-console.log(arrs);
-// création d'un tableau avec nombre d'éléments par arrondissement
-var cafes = new Object();
-var marches = new Object();
-var tab_cafes = new Array();
-var tab_marches = new Array();
-var tab_cines = new Array();
-var tab_crouss = new Array();
-var tab_preservatifs = new Array();
-var tab_biblis = new Array();
-var tab_bars = new Array();
-var i = 1;
-$(xml).find('arrondissement').each(function(){
-	var arro = $(this).attr("num") ;
-  cafes[arro] = 0;
-  marches[arro] = 0;
-  tab_cafes[i] = 0;
-  tab_marches[i] = 0;
-  tab_bars[i] = 0;
-  tab_preservatifs[i] = 0;
-  tab_cines[i] = 0;
-  tab_biblis[i] = 0;
-  tab_crouss[i] = 0;
-  $("#liste").append('<h3 id="'+arro+'">'+arro+'</h3>')
-  $("#liste").append('<ul id="'+i+'" class="bar"></ul>')
-	$(this).find('element').each( function(){
-		var id = $(this).attr('id') ;
-		var nom = $(this).find('nom').text() ;
-		var adr = $(this).find("adresse").text() ;
-		var type = $(this).attr("type") ;
-    if(type == "cafe") {
-      cafes[arro]++;
-      tab_cafes[i]++;
-    };
-    if(type == "marche") {
-      marches[arro]++;
-      tab_marches[i]++;
-    };
-    if(type == "cinema") {
-      tab_cines[i]++;
-    };
-    if(type == "bibli") {
-      tab_biblis[i]++;
-    };
-    if(type == "preservatifs") {
-      tab_preservatifs[i]++;
-    };
-    if(type == "bar") {
-      tab_bars[i]++;
-    };
-    if(type == "crous") {
-      tab_crouss[i]++;
-    };
-	});
-  $("#"+i).append('<li class="visualize" data-value="'+tab_cafes[i]+'" data-color="#FFAAAA">cafes : '+tab_cafes[i]+'</li>')
-  $("#"+i).append('<li class="visualize" data-value="'+tab_marches[i]+'" data-color="#D46A6A">marches : '+tab_marches[i]+'</li>')
-  $("#"+i).append('<li class="visualize" data-value="'+tab_cines[i]+'" data-color="#AA3939">cinémas : '+tab_cines[i]+'</li>')
-  $("#"+i).append('<li class="visualize" data-value="'+tab_crouss[i]+'" data-color="#801515">crous : '+tab_crouss[i]+'</li>')
-  $("#"+i).append('<li class="visualize" data-value="'+tab_preservatifs[i]+'" data-color="#550000">preservatifs : '+tab_preservatifs[i]+'</li>')
-  $("#"+i).append('<li class="visualize" data-value="'+tab_bars[i]+'" data-color="#AA6C39">bars : '+tab_bars[i]+'</li>')
-  $("#"+i).append('<li class="visualize" data-value="'+tab_biblis[i]+'" data-color="#882D61">bibliothèques : '+tab_biblis[i]+'</li>')
-  i++;
-});
-console.log(tab_cafes);
-$('.bar').visualize({
-     width: 300,
-     height: 300,
-     type: 'bar',
-     legend: true
- });
-</script>
 
 </body>
 </html>
