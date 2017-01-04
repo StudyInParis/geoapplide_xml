@@ -1,0 +1,33 @@
+../XML/fichiers_2xml
+../XML/fichiers_2xml/Bibliotheque.xml
+../XML/fichiers_2xml/Bibliotheque.xml is valid.
+*****************************
+../XML/fichiers_2xml/fac.xml
+../XML/fichiers_2xml/fac.xml is valid.
+*****************************
+../XML/fichiers_2xml_pivot
+../XML/fichiers_2xml_pivot/Bibliotheque_modele.xml
+../XML/fichiers_2xml_pivot/Bibliotheque_modele.xml is valid.
+*****************************
+../XML/fichiers_2xml_pivot/cinemas-a-paris_pivot.xml
+../XML/fichiers_2xml_pivot/cinemas-a-paris_pivot.xml is valid.
+*****************************
+../XML/fichiers_2xml_pivot/distributeurspreservatifsmasculinsparis2012_pivot.xml
+../XML/fichiers_2xml_pivot/distributeurspreservatifsmasculinsparis2012_pivot.xml is valid.
+*****************************
+../XML/fichiers_2xml_pivot/liste-des-cafes-a-un-euro_pivot.xml
+../XML/fichiers_2xml_pivot/liste-des-cafes-a-un-euro_pivot.xml is valid.
+*****************************
+../XML/fichiers_2xml_pivot/liste_des_marches_de_quartier_a_paris_pivot.xml
+../XML/fichiers_2xml_pivot/liste_des_marches_de_quartier_a_paris_pivot.xml is valid.
+*****************************
+../XML/fichiers_2xml_pivot/openbeermap_pivot.xml
+../XML/fichiers_2xml_pivot/openbeermap_pivot.xml is valid.
+*****************************
+../XML/fichiers_2xml_pivot/restauration_france_entiere_pivot.xml
+../XML/fichiers_2xml_pivot/restauration_france_entiere_pivot.xml is valid.
+*****************************
+../XML/xml_pivot
+../XML/xml_pivot/xml_pivot.xml
+../XML/xml_pivot/xml_pivot.xml is valid.
+*****************************

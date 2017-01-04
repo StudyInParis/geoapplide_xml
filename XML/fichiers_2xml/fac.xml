@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE racine SYSTEM "../../grammaire/validation_xml/fac.dtd">
 <racine>
 	<etablissement id ="1">
 		<ndeg_identifiant>75002001 </ndeg_identifiant>
