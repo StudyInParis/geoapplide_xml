@@ -1,6 +1,11 @@
 #! usr/bin/python3
 #! coding: utf-8
 
+""" 
+Prend en entrée le fichier csv bibliotheque et le transforme en xml
+INSTALLER csv2xml
+"""
+
 import csv, os
 from csv2xml import prepare
 
@@ -49,4 +54,4 @@ def arrange_data(string):
 
 if __name__ == '__main__':
 
-	get_data("../data/csv/equipements_de_proximite.csv", "Bibliothèque")
+	get_data("../data/CSV/equipements_de_proximite.csv", "Bibliothèque")

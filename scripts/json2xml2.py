@@ -42,6 +42,6 @@ def main(input_file, outfile):
 if __name__ == '__main__':
 	liste=["annuaire_immobilier_de_l_enseignement_superieur","liste-des-cafes-a-un-euro","quartier_paris", "liste_des_marches_de_quartier_a_paris","cinemas-a-paris"]
 	for fichier in liste:
-		infile="../donnees_brutes/"+fichier+".json"
-		outfile="../donnees_xml/"+fichier+".xml"
+		infile="../data/JSON/"+fichier+".json"
+		outfile="../XML/fichier_2xml/"+fichier+".xml"
 		main(infile, outfile)

@@ -1,10 +1,16 @@
+#!/usr/bin/python3
+#! coding: utf-8
+
+""" 
+Tranforme le OPenbeermap en xm. Prend en entrée le OBM et donne en sortie un format xml
+INSTALLER osmapi
+"""
 import re
 import osmapi
 import pprint
 
-csv_file = open('../donnees_brutes/OpenBeerMap_IDF.csv','r')
-# xml_output = open('../donnees_xml/OpenBeerMap.xml','w')
-xml_pivot = open('../xml_formattes_pivot/openbeermap_pivot.xml','w')
+csv_file = open('../data/CSV/OpenBeerMap_IDF.csv','r')
+xml_output = open('../XML/fichiers_2xml/OpenBeerMap.xml','w')
 
 def line_mod(line):
 	"""
@@ -75,7 +81,7 @@ if __name__ == '__main__':
 				cpt_line += 1
 
 	# Impression du résultat dans le fichier de sortie
-	xml_output.write('<?xml version="1.0" standalone="yes"?>\n<document id="open beer map">\n')
+	xml_output.write('<?xml version="1.0" standalone="no"?>\n<document id="open beer map">\n')
 	for element in final_tab:
 		xml_output.write('<item id="'+str(element)+'">\n')
 		for item in final_tab[element]:

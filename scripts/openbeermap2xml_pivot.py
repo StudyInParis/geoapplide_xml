@@ -1,6 +1,11 @@
 #! usr/bin/python3
 #! coding: utf-8
 
+"""
+Prend en entrée le OBM xml et le convertit au format xml_pivot
+INSTALLER geopy.geocoders
+"""
+
 from lxml import etree
 import osmapi # pip install module python pour acces api open street map
 from geopy.geocoders import Nominatim
@@ -54,7 +59,7 @@ def impression_xml_pivot(dico):
     entree = dictionnaire
     sortie = void
     """
-    output = open("../xml_formattes_pivot/openbeermap_pivot.xml", 'w')
+    output = open("../XML/fichiers_2xml_pivot/openbeermap_pivot.xml", 'w')
     output.write('<?xml version="1.0" encoding="utf-8" standalone="no"?>\n<root>\n')
     for element in sorted(dico):
         if element.startswith("750"):
@@ -73,7 +78,7 @@ def impression_xml_pivot(dico):
 
 if __name__ == "__main__":
     print("parser le fichier xml en entrée")
-    tree = etree.parse('../donnees_xml/OpenBeerMap.xml')
+    tree = etree.parse('../XML/fichiers_2xml/OpenBeerMap.xml')
     root = tree.getroot()
     print("récupérer l'ensemble des osm_id avec le name du bar correspondant dans 2 listes")
     liste_noms = root.xpath("//name/text()")

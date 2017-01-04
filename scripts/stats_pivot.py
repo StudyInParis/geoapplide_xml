@@ -1,6 +1,13 @@
 #!/usr/bin/python
-# coding: utf-8
+#! coding: utf-8
+
+"""
+Prend en entrée le xml pivot et sort un tableau de statistiques sur chaque équipement de chaque arrondissement. 
+A AJOUTER A L AVENIR fournira une moyenne de chaque arrondissement, de chaque équipement et effectuera une matrice de corrélation entre les différents équipements.
+"""
+
 from pprint import pprint
+
 def open_and_dic(fichier,dic):
 	fic = open(fichier,'r')
 	lines = fic.readlines()
@@ -18,7 +25,7 @@ def open_and_dic(fichier,dic):
 				dic[arr] += [ligne]
 	return dic
 def compter(dic):
-	dic = open_and_dic("../xml_formattes_pivot/xml_pivot.xml",{})
+	dic = open_and_dic("../XML/xml_pivot/xml_pivot.xml",{})
 	dico2 = {}
 	for cle in dic:
 		cle = cle.rstrip()
@@ -43,4 +50,4 @@ def csv_like(xls_out,dic2):
 			out.write("\n"+clef+"\t"+str(dic2[cle][clef]))
 		out.write("\n")
 if __name__=='__main__':
-	csv_like("../xml_formattes_pivot/stats_pivot.xls",{})
+	csv_like("../XML/stats_pivot.xls",{})

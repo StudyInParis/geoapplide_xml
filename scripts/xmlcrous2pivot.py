@@ -1,9 +1,14 @@
 #! usr/bin/python3
 #! coding: utf-8
 
+"""
+Prend en entrée le fichier xml CROUS et le convertit au format xml_pivot avec le module utilisé dans json2xmlpivot
+INSTALLER xml.etree.Element.Tree
+"""
+
 import xml.etree.ElementTree as ET
 from pprint import pprint
-from cinemas2xmlpivot import writeInFile
+from json2xmlpivot import writeInFile
 
 def getInfos(infilename):
 	dic={}
@@ -25,6 +30,6 @@ def getInfos(infilename):
 	return dic
 
 if __name__ == '__main__':
-	fic="restauration_france_entiere.xml"
-	dic=getInfos("../donnees_xml/"+fic)
-	writeInFile(dic,"crous", "../xml_formattes_pivot/"+fic[:-4]+"_pivot.xml")
+	fic="crous_restauration_france_entiere.xml"
+	dic=getInfos("../data/XML/"+fic)
+	writeInFile(dic,"crous", "../XML/fichiers_2xml_pivot/"+fic[:-4]+"_pivot.xml")

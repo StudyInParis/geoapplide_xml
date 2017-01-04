@@ -1,4 +1,10 @@
-# conding: utf-8
+#!/usr/bin/python3
+#! coding: utf-8
+
+"""
+Module qui prend en entrée un fichier et crée une table de hachage avec les arrondissements et les loyers associés à chaque quartier de l'arr, la date de création des immeubles, la taille des appartements, fait la moyenne de tous ces nombres PAR ARRONDISSEMENT et les stocke en valeur dans un second dictionnaire
+"""
+
 import math
 from pprint import pprint
 def create_dic(fichier):
