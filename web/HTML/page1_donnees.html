@@ -9,9 +9,9 @@
 		<title>Données</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="../js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="../css/ie8.css" /><![endif]-->
 	</head>
 	<body class="left-sidebar">
 		<div id="page-wrapper">
@@ -41,7 +41,7 @@
 											</ul>
 										</li> -->
 										<li><a href="page2_graphes.html">Graphes</a></li>
-										<li><a href="page4_carte.html">Carte</a></li>
+										<li><a href="page3_avec_carte.html">Carte</a></li>
 										<li><a href="page4_tableau.html">Tableau</a></li>
 									</ul>
 								</nav>
@@ -93,10 +93,10 @@
 											<h3 id="datagouv">DataGouv</h3>
 												<p>Une partie de nos données viennent du site <a href="http://www.data.gouv.fr/fr/">data.gouv</a> qui est un site gourvernemenal qui propose les données mises en ligne par le gouvernement. Nous y avons par exmpele récupéré les données sur les loyers ou les bibliothèques.</p>
 												<p>Beaucoup de données y sont présentes au format CSV ou JSON, peu de choses sont récupérables en XML, nous avons du les transformé, c'est expliqué <a href="#data2xml">un peu plus loin</a>.</p>
-												<img src="images/datagouv.png" alt="logo paris opendata" height="100px"/>
+												<img src="../images/datagouv.png" alt="logo paris opendata" height="100px"/>
 											<h3 id="parisdata">Paris OpenData</h3>
 												<p>La plus grosse partie de nos sources vient du site <a href="https://opendata.paris.fr">opendata</a> de la ville de Paris. De même, la plupart des données y sont présentes au format CSV, donc ils ont été transformés aussi.</p>
-												<img src="images/parisdata.png" alt="logo paris opendata" width="300px"/>
+												<img src="../images/parisdata.png" alt="logo paris opendata" width="300px"/>
 											<h3 id="data2xml">Transformation en fichiers XML</h3>
 											<h4>CSV</h4>
 												<p>Le fichier OpenBeerMap est construit de la façon suivante :
@@ -142,68 +142,68 @@
 					</div>
 				</div>
 
-				<!-- Footer -->
-					<div id="footer-wrapper">
-						<footer id="footer" class="container">
-							<div class="row">
-								<div class="3u 6u(medium) 12u$(small)">
+			<!-- Footer -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="3u 6u(medium) 12u$(small)">
 
-									<!-- Links -->
-										<section class="widget links">
-											<h3>Chloé Monnin</h3>
-											<ul class="style2">
-												<li><a href="#">contact mail</a></li>
-											</ul>
-										</section>
-
-								</div>
-								<div class="3u 6u$(medium) 12u$(small)">
-
-									<!-- Links -->
-										<section class="widget links">
-											<h3>Mathilde Poulain</h3>
-											<ul class="style2">
-												<li><a href="#">contact mail</a></li>
-											</ul>
-										</section>
-
-								</div>
-								<div class="3u 6u(medium) 12u$(small)">
-
-									<!-- Links -->
-										<section class="widget links">
-											<h3>Léon-Paul Schaub</h3>
-											<ul class="style2">
-												<li><a href="#">contact mail</a></li>
-											</ul>
-										</section>
-
-								</div>
-								<div class="3u 6u$(medium) 12u$(small)">
-
-									<!-- Contact -->
-										<section class="widget contact last">
-											<h3>Notre projet sur Github</h3>
-											<ul>
-												<li><a ref="https://github.com/StudyInParis/geoapplide"><img src="images/GitHub-Mark-Light-32px.png" alt="lien geoapplide github"/></a></li>
-											</ul>
-										</section>
-
-								</div>
-							</div>
-							<div class="row">
-								<div class="12u">
-									<div id="copyright">
-										<ul class="menu">
-											<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<!-- Links -->
+									<section class="widget links">
+										<h3>Chloé Monnin</h3>
+										<ul class="style2">
+											<li><a href="mailto:chloe.g.tuillier@gmail.com">contact mail</a></li>
 										</ul>
-									</div>
+									</section>
+
+							</div>
+							<div class="3u 6u$(medium) 12u$(small)">
+
+								<!-- Links -->
+									<section class="widget links">
+										<h3>Mathilde Poulain</h3>
+										<ul class="style2">
+											<li><a href="mailto:mathilde.poulain@ouvaton.org">contact mail</a></li>
+										</ul>
+									</section>
+
+							</div>
+							<div class="3u 6u(medium) 12u$(small)">
+
+								<!-- Links -->
+									<section class="widget links">
+										<h3>Léon-Paul Schaub</h3>
+										<ul class="style2">
+											<li><a href="mailto:lp.schaub@gmail.com">contact mail</a></li>
+										</ul>
+									</section>
+
+							</div>
+							<div class="3u 6u$(medium) 12u$(small)">
+
+								<!-- Contact -->
+									<section class="widget contact last">
+										<h3>Notre projet sur Github</h3>
+										<ul>
+											<li><a href="https://github.com/StudyInParis/geoapplide"><img src="../images/GitHub-Mark-Light-32px.png" alt="lien geoapplide github"></a></li>
+										</ul>
+									</section>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="12u">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									</ul>
 								</div>
 							</div>
-						</footer>
-					</div>
-
+						</div>
+					</footer>
 				</div>
+
+			</div>
 
 <!-- Scripts -->
 <script>

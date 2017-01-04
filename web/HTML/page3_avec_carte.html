@@ -2,17 +2,151 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Visu avec carte</title>
-  <script src="assets/js/jquery.min.js"></script>
+  <title>Visuel carte</title>
+  <script src="../js/jquery.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 8]><script src="../js/ie/html5shiv.js"></script><![endif]-->
+  <link rel="stylesheet" href="../css/main_test_gmaps.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="../css/ie8.css" /><![endif]
   <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
-  <!--[if lte IE 8]>
+  [if lte IE 8]>
       <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
-  <![endif]-->
-  <script src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+  <![endif]
+  <script src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>-->
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript" src="../gmaps/gmaps.js"></script>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css" />
+  <!--<link rel="stylesheet" type="text/css" href="../gmaps/examples.css" />-->
+<!-- <script type="text/javascript" src="../js/map.js"></script> -->
+  <script type="text/javascript">
+    var map;
+    $(document).ready(function(){
+      map = new GMaps({
+        el: '#map',
+        lat: 48.866667,
+        lng: 2.333333,
+        zoomControl : true,
+        zoomControlOpt: {
+            style : 'SMALL',
+            position: 'TOP_LEFT'
+        },
+        panControl : false,
+        streetViewControl : false,
+        mapTypeControl: false,
+        overviewMapControl: false
+      });
+      jQuery.getJSON('https://raw.githubusercontent.com/StudyInParis/geoapplide/master/donnees_geojson/arrondissements_origin_modif.geojson', function(data) {
+           // alert("ok");
+          var items = [];
+          $.each( data, function( key, val ) {
+          if (key == "features"){
+            $.each( val, function(value){
+              // value = index de l'element dans la liste
+              // console.log(val[value]);
+              var color;
+              $.each( val[value], function( key2, val2 ) {
+                // console.log(key2);
+                if (key2 == "loyer"){
+                  // console.log(val2);
+                  if (val2=="21"){
+                    color="#ff1a1b";
+                  }
+                  if (val2=="22"){
+                    color="#ff0002";
+                  }
+                  if (val2=="23"){
+                    color="#e60001";
+                  }
+                  if (val2=="24"){
+                    color="#cd0001";
+                  }
+                  if (val2=="25"){
+                    color="#b30001";
+                  }
+                  if (val2==26){
+                    color="#9a0001";
+                  }
+                  if (val2==27){
+                    color="#800001";
+                  }
+                  if (val2=="28"){
+                    color="#670001";
+                  }
+                }
+                if (key2 == "geometry"){
+                  $.each( val2, function( key3, val3 ) {
+                    if (key3 == "coordinates"){
+
+                      // alert("ok");
+                      // console.log([val3][0]);
+                      // console.log(color);
+                      map.drawPolygon({
+                      paths: val3,
+                      useGeoJSON: true,
+                      //strokeColor: color,
+                      strokeOpacity: 0.8,
+                      strokeWeight: 2,
+                      fillColor: color,
+                      fillOpacity : 0.5
+                    });
+                    }
+                  })
+                }
+              })
+            })
+          }
+        });
+      });
+
+      $.ajax({
+            type: 'GET',
+            url: 'https://raw.githubusercontent.com/StudyInParis/geoapplide/master/xml_formattes_pivot/xml_pivot.xml',
+            dataType: 'xml',
+            success: function(xml) {
+              // var compteur=1;
+              $(xml).find('element').each(function() {
+                // console.log(compteur);
+                // alert(String(compteur));
+                var icone;
+                if ($(this).attr("type") == "preservatifs"){
+                  icone = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_purple.png';
+                }
+                if ($(this).attr("type") == "bibli"){
+                  //icone = 'assets/gmaps/Google Maps Markers/blue_MarkerB.png';
+                  icone = "http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_blue.png";
+                }
+                if ($(this).attr("type") == "cinema"){
+                  icone = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_white.png';
+                }
+                if ($(this).attr("type") == "cafe"){
+                  icone = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_yellow.png';
+                }
+                if ($(this).attr("type") == "marche"){
+                  icone = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png';
+                }
+                if ($(this).attr("type") == "crous"){
+                  icone = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_brown.png';
+                }
+                if ($(this).attr("type") == "bar"){
+                  icone = 'http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_orange.png';
+                }
+                map.addMarker({
+                lat: $(this).find('latitude').text(),
+                lng: $(this).find('longitude').text(),
+                title: $(this).attr("type"),
+                icon: icone,
+                infoWindow: {
+                  content: '<p>'+$(this).find('nom').text()+'</br>'+$(this).find('adresse').text()+'</br>'+$(this).attr("type")+'</p>'
+        }
+      });
+      // compteur+=1;
+              });
+            }
+            });
+
+    });
+  </script>
 </head>
 <body class="left-sidebar">
 		<div id="page-wrapper">
@@ -31,8 +165,8 @@
                 <!-- Nav -->
     							<nav id="nav">
     								<ul>
-    									<li class="current"><a href="index.html">Bienvenue !</a></li>
-    									<li>
+    									<li><a href="index.html">Bienvenue !</a></li>
+    									<!-- <li>
     										<a href="#">Dropdown</a>
     										<ul>
     											<li><a href="#">Lorem ipsum dolor</a></li>
@@ -48,10 +182,11 @@
     											</li>
     											<li><a href="#">Veroeros feugiat</a></li>
     										</ul>
-    									</li>
+    									</li> -->
     									<li><a href="page1_donnees.html">Données</a></li>
     									<li><a href="page2_graphes.html">Graphes</a></li>
-    									<li><a href="page3_avec_carte_tests.html">Visualisation</a></li>
+    									<li class="current"><a href="page3_avec_carte.html">Carte</a></li>
+    									<li><a href="page4_tableau.html">Tableau</a></li>
     								</ul>
     							</nav>
 
@@ -64,36 +199,6 @@
     			<div id="main-wrapper">
     					<div class="container">
     						<div class="row 200%">
-                  <div class="4u 12u$(medium)">
-    								<div id="sidebar">
-                      <section>
-                        <h3>Sélectionnez un arrondissement</h3>
-                        <ul class="style2">
-                          <li><a href="#75001">75001</a></li>
-                          <li><a href="#75002">75002</a></li>
-                          <li><a href="#75003">75003</a></li>
-                          <li><a href="#75004">75004</a></li>
-                          <li><a href="#75005">75005</a></li>
-                          <li><a href="#75006">75006</a></li>
-                          <li><a href="#75007">75007</a></li>
-                          <li><a href="#75008">75008</a></li>
-                          <li><a href="#75009">75009</a></li>
-                          <li><a href="#75010">75010</a></li>
-                          <li><a href="#75011">75011</a></li>
-                          <li><a href="#75012">75012</a></li>
-                          <li><a href="#75013">75013</a></li>
-                          <li><a href="#75014">75014</a></li>
-                          <li><a href="#75015">75015</a></li>
-                          <li><a href="#75016">75016</a></li>
-                          <li><a href="#75017">75017</a></li>
-                          <li><a href="#75018">75018</a></li>
-                          <li><a href="#75019">75019</a></li>
-                          <li><a href="#75020">75020</a></li>
-                        </ul>
-                      </section>
-                    </div>
-                    <!-- Sidebar end -->
-                  </div>
                   <!-- 4u 12u$(medium) end -->
 
     							<div class="8u 12u$(medium) important(medium)">
@@ -102,9 +207,10 @@
     									<!-- Content -->
     										<article>
 
-    											<h2 id="titre">Test</h2>
+    											<h2 id="titre">Carte de visualisation des lieux</h2>
+                          <p>Cette carte représente tous les lieux donnés dans les fichiers récupérés, chaque couleur correspond à un type de lieux, en sélectionnant un lieu, vous verrez l'adresse et le type de lieu (marché, cinéma, distributeurs de préservatifs, café, bar ou bibliothèque).</p>
 
-    											<div id="visu1"></div>
+                          <div id="map"></div>
 
     										</article>
 
@@ -121,119 +227,69 @@
     </div>
     <!-- page-wrapper end -->
 
-<textarea id="source" style="width:650px;height:450px;" >
-</textarea>
+      <!-- Footer -->
+        <div id="footer-wrapper">
+          <footer id="footer" class="container">
+            <div class="row">
+              <div class="3u 6u(medium) 12u$(small)">
 
+                <!-- Links -->
+                  <section class="widget links">
+                    <h3>Chloé Monnin</h3>
+                    <ul class="style2">
+                      <li><a href="mailto:chloe.g.tuillier@gmail.com">contact mail</a></li>
+                    </ul>
+                  </section>
 
+              </div>
+              <div class="3u 6u$(medium) 12u$(small)">
 
+                <!-- Links -->
+                  <section class="widget links">
+                    <h3>Mathilde Poulain</h3>
+                    <ul class="style2">
+                      <li><a href="mailto:mathilde.poulain@ouvaton.org">contact mail</a></li>
+                    </ul>
+                  </section>
 
-<script>
-$("#titre").append(", de jquery !");
-$("#source").hide();
+              </div>
+              <div class="3u 6u(medium) 12u$(small)">
 
-$.ajax({
-  url: "https://raw.githubusercontent.com/StudyInParis/geoapplide/master/xml_formattes_pivot/xml_pivot.xml",
-  cache: true
-})
-  .done(function( html ) {
-    $("#source").val( html ) ;
-  });
+                <!-- Links -->
+                  <section class="widget links">
+                    <h3>Léon-Paul Schaub</h3>
+                    <ul class="style2">
+                      <li><a href="mailto:lp.schaub@gmail.com">contact mail</a></li>
+                    </ul>
+                  </section>
 
-    var xml=$("#source").val(),
-    xmlDoc = $.parseXML( xml ),
-    $xml = $( xmlDoc );
+              </div>
+              <div class="3u 6u$(medium) 12u$(small)">
 
-// crée un tableau avec tous les types
-var types = new Object() ;
-$(xml).find('arrondissement').each(function(){
-	var arro = $(this).attr("num") ;
-	$(this).find('element').each( function(){
-		var type = $(this).attr("type") ;
-    types[type] = type;
-	});
-});
-console.log(types);
+                <!-- Contact -->
+                  <section class="widget contact last">
+                    <h3>Notre projet sur Github</h3>
+                    <ul>
+                      <li><a href="https://github.com/StudyInParis/geoapplide"><img src="../images/GitHub-Mark-Light-32px.png" alt="lien geoapplide github"></a></li>
+                    </ul>
+                  </section>
 
-// créé un tableau avec tous les arrondissements
-var arrs = new Array();
-var i =0;
-$(xml).find('arrondissement').each(function(){
-  var arro = $(this).attr("num") ;
-  arrs[i] = arro;
-  i++;
-  });
-console.log(arrs);
+              </div>
+            </div>
+            <div class="row">
+              <div class="12u">
+                <div id="copyright">
+                  <ul class="menu">
+                    <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
 
-// création des boites arrondissements
-$.each( arrs, function( key, value ) {
-  $("#visu1").append('<div id="'+value+'" style="border-top:1px solid #808080; clear:both"><h3>'+value+'</h3></div>');
-  var temp = value ;
-  $.each(types, function(key, value) {
-    $("#"+temp).append('<h4 class="arro" id="titre-'+temp + value+'" style="clear:both">'+value+'</h4>');
-    $("#"+temp).append('<div class="content-arro" id="'+ temp + value+'""></div>');
-  });
-});
+      </div>
 
-
-$(xml).find('arrondissement').each(function(){
-	var arro = $(this).attr("num") ;
-	$(this).find('element').each( function(){
-		var id = $(this).attr('id') ;
-		var nom = $(this).find('nom').text() ;
-		var adr = $(this).find("adresse").text() ;
-		var lat = $(this).find("latitude").text() ;
-		var lon = $(this).find("longitude").text() ;
-		var type = $(this).attr("type") ;
-    $("#"+arro+type).append('<div class="element '+type+'" id="'+id+'" style="margin:5px; border:1px dashed #cacaca; width:200px; float:left; height:80px; padding:5px">'+nom+'<div class="adresse" id="'+id+'-adresse" style="font-style:italic;">'+adr+'</div><div class="map" id="'+id+'-map"><div class="lat">'+lat+'</div><div class="lon">'+lon+'</div></div></div>')
-
-	});
-});
-
-$( "div.element" )
-  .mouseover(function() {
-    $( this ).css("background-color","#FEC606");
-    $( this ).css("height","100%");
-    $( "#"+$(this).attr("id")+"-adresse" ).show('fast');
-  })
-  .mouseout(function() {
-    // $( this ).css("background-color","#FFF");
-    $( "#"+$(this).attr("id")+"-adresse" ).hide();
-    $(".cinema").css("background-color","#D4DBC8") ;
-    $(".marche").css("background-color","#BD8D46") ;
-    $(".cafe").css("background-color","#B0CC99") ;
-    $(".bibli").css("background-color","#C4D7ED") ;
-    $(".preservatifs").css("background-color","#9E8479") ;
-    $(".bar").css("background-color","#EACFB8") ;
-    $(".crous").css("background-color","#FFD940") ;
-    $( this ).css("height","80px");
-  });
-
-// initialisation carte osm
-// function InitialiserCarte() {
-// var map = L.map('map').setView([45.7531152, 4.827906], 17);
-// // create the tile layer with correct attribution
-// var tuileUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
-// var attrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-// L.TileLayer(tuileUrl, {minZoom: 8, maxZoom: 18, attribution: attrib}).addTo(map);
-// };
-
-
-
-// <iframe width="400" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://cartosm.eu/map?lon='+$( "#"+$(this).find("lon")+"-map" )+'&lat='+$( "#"+$(this).find("lat")+"-map" )+'&zoom=17&width=400&height=350&mark=true&nav=true&pan=true&zb=inout&style=default&icon=down"></iframe>
-
-$(".adresse").hide();
-$(".map").hide();
-
-$(".cinema").css("background-color","#D4DBC8") ;
-$(".marche").css("background-color","#BD8D46") ;
-$(".cafe").css("background-color","#B0CC99") ;
-$(".bibli").css("background-color","#C4D7ED") ;
-$(".preservatifs").css("background-color","#9E8479") ;
-$(".bar").css("background-color","#EACFB8") ;
-$(".crous").css("background-color","#FFD940") ;
-
-
-</script>
 
 </body>
 </html>
